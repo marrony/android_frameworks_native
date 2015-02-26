@@ -329,4 +329,11 @@ status_t GraphicBuffer::unflatten(
 
 // ---------------------------------------------------------------------------
 
+extern "C" void _ZN7android13GraphicBuffer8setIndexEi(GraphicBuffer* buffer, int index) {
+}
+
+extern "C" int _ZNK7android13GraphicBuffer8getIndexEv(GraphicBuffer* buffer) {
+   return 0;
+}
+
 }; // namespace android

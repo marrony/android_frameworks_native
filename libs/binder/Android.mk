@@ -34,6 +34,7 @@ sources := \
     ProcessState.cpp \
     Static.cpp \
     TextOutput.cpp \
+    Overlay.cpp
 
 ifeq ($(BOARD_NEEDS_MEMORYHEAPPMEM),true)
 sources += \
@@ -62,7 +63,7 @@ endif
 
 LOCAL_LDLIBS += -lpthread
 LOCAL_MODULE := libbinder
-LOCAL_SHARED_LIBRARIES += liblog libcutils libutils
+LOCAL_SHARED_LIBRARIES += liblog libcutils libutils libhardware
 LOCAL_SRC_FILES := $(sources)
 
 include $(BUILD_SHARED_LIBRARY)

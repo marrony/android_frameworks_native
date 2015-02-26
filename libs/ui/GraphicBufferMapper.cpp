@@ -46,6 +46,10 @@ GraphicBufferMapper::GraphicBufferMapper()
     }
 }
 
+extern "C" status_t _ZN7android19GraphicBufferMapper14registerBufferEPK15native_handle_t(GraphicBufferMapper* mapper, buffer_handle_t handle) {
+   return mapper->registerBuffer(handle);
+}
+
 status_t GraphicBufferMapper::registerBuffer(buffer_handle_t handle)
 {
     ATRACE_CALL();
@@ -56,6 +60,10 @@ status_t GraphicBufferMapper::registerBuffer(buffer_handle_t handle)
     ALOGW_IF(err, "registerBuffer(%p) failed %d (%s)",
             handle, err, strerror(-err));
     return err;
+}
+
+extern "C" status_t _ZN7android19GraphicBufferMapper16unregisterBufferEPK15native_handle_t(GraphicBufferMapper* mapper, buffer_handle_t handle) {
+   return mapper->unregisterBuffer(handle);
 }
 
 status_t GraphicBufferMapper::unregisterBuffer(buffer_handle_t handle)

@@ -261,3 +261,18 @@ bool BpRefBase::onIncStrongAttempted(uint32_t flags, const void* id)
 // ---------------------------------------------------------------------------
 
 }; // namespace android
+
+#include <jni.h>
+
+jfieldID gFileDescriptorOffsets_mDescriptor = NULL;
+
+// Returns the Unix file descriptor for a ParcelFileDescriptor object
+extern "C" int _ZN7android25getParcelFileDescriptorFDEP7_JNIEnvP8_jobject(JNIEnv* env, jobject object)
+{
+    if(gFileDescriptorOffsets_mDescriptor == 0) {
+       jclass clazz = env->FindClass("java/io/FileDescriptor");
+       gFileDescriptorOffsets_mDescriptor = env->GetFieldID(clazz, "descriptor", "I");
+    }
+
+    return env->GetIntField(object, gFileDescriptorOffsets_mDescriptor);
+}

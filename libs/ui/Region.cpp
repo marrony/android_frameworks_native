@@ -826,4 +826,14 @@ void Region::dump(const char* what, uint32_t flags) const
 
 // ----------------------------------------------------------------------------
 
+extern "C" status_t _ZNK7android6Region5writeEPvj(void* region, void* buffer, size_t size) 
+{
+    return NO_ERROR;
+}
+
+extern "C" status_t _ZN7android6Region4readEPKv(void* region, const void* buffer)
+{
+    return NO_ERROR;
+}
+
 }; // namespace android
